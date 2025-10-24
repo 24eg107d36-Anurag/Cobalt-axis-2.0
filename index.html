@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-g" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CobaltAxis - Modern Web Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .gradient-shadow::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        padding: 2px; /* border thickness */
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        -webkit-mask: 
+          linear-gradient(#fff 0 0) content-box, 
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      
+      /* Styles for ScrollVelocity component */
+      .parallax { 
+        position: relative; 
+        overflow: hidden; 
+        margin: 4rem 0;
+      }
+      .scroller { 
+        display: flex; 
+        white-space: nowrap; 
+        text-align: center; 
+        font-family: sans-serif; 
+        font-size: 2.25rem; 
+        font-weight: bold; 
+        letter-spacing: -0.02em; 
+        filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1)); 
+      }
+      .scroller span { 
+        flex-shrink: 0; 
+        text-transform: uppercase;
+      }
+      .scroll-text-gradient {
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        opacity: 0.7;
+      }
+      @media(min-width:768px){ 
+        .scroller { 
+          font-size:5rem; 
+          line-height:5rem; 
+        } 
+      }
+
+      /* Styles for TextType component */
+      .text-type-cursor {
+        display: inline-block;
+        margin-left: 2px;
+        background-color: #3b82f6; /* Blue cursor */
+        width: 4px;
+        animation: blink 1s infinite;
+      }
+      .text-type-container span {
+         font-family: monospace;
+      }
+      @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+      }
+      
+      .gradient-text {
+        background: linear-gradient(90deg, #3b82f6, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+
+      .about-heading {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .about-text {
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+        font-weight: 400;
+        color: #cfcfcf;
+        line-height: 1.7;
+      }
+
+      /* Styles for new LogoLoop component */
+      .logoloop {
+        position: relative;
+        overflow: hidden;
+        --logoloop-gap: 32px;
+        --logoloop-logoHeight: 28px;
+        --logoloop-fadeColorAuto: #ffffff;
+      }
+      .logoloop--scale-hover {
+        padding-top: calc(var(--logoloop-logoHeight) * 0.1);
+        padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
+      }
+      @media (prefers-color-scheme: dark) {
+        .logoloop {
+          --logoloop-fadeColorAuto: #000000;
+        }
+      }
+      .logoloop__track {
+        display: flex;
+        width: max-content;
+        will-change: transform;
+        user-select: none;
+      }
+      .logoloop__list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .logoloop__item {
+        flex: 0 0 auto;
+        margin-right: var(--logoloop-gap);
+        font-size: var(--logoloop-logoHeight);
+        line-height: 1;
+        color: #888;
+        transition: color 0.3s ease;
+      }
+      .logoloop__item:hover {
+        color: #fff;
+      }
+      .logoloop__item:last-child {
+        margin-right: var(--logoloop-gap);
+      }
+      .logoloop__node {
+        display: inline-flex;
+        align-items: center;
+      }
+      .logoloop__item svg {
+        height: var(--logoloop-logoHeight);
+        width: auto;
+        display: block;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .logoloop--scale-hover .logoloop__item {
+        overflow: visible;
+      }
+      .logoloop--scale-hover .logoloop__item:hover svg,
+      .logoloop--scale-hover .logoloop__item:hover .logoloop__node {
+        transform: scale(1.2);
+        transform-origin: center center;
+      }
+      .logoloop--scale-hover .logoloop__node {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .logoloop__link {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: opacity 0.2s ease;
+      }
+      .logoloop__link:hover {
+        opacity: 0.8;
+      }
+      .logoloop__link:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+      }
+      .logoloop--fade::before,
+      .logoloop--fade::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: clamp(24px, 8%, 120px);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .logoloop--fade::before {
+        left: 0;
+        background: linear-gradient( to right, var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%, rgba(0, 0, 0, 0) 100% );
+      }
+      .logoloop--fade::after {
+        right: 0;
+        background: linear-gradient( to left, var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%, rgba(0, 0, 0, 0) 100% );
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .logoloop__track {
+          transform: translate3d(0, 0, 0) !important;
+        }
+        .logoloop__item svg,
+        .logoloop__node {
+          transition: none !important;
+        }
+      }
+
+      /* Styles for TiltedCard component */
+      .tilted-card-figure {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        perspective: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .tilted-card-mobile-alert {
+        position: absolute;
+        top: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        display: none;
+      }
+      @media (max-width: 640px) {
+        .tilted-card-mobile-alert {
+          display: block;
+        }
+        .tilted-card-caption {
+          display: none;
+        }
+      }
+      .tilted-card-inner {
+        position: relative;
+        transform-style: preserve-3d;
+      }
+      .tilted-card-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        border-radius: 9999px; /* Make image circular */
+        will-change: transform;
+        transform: translateZ(0);
+      }
+      .tilted-card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        will-change: transform;
+        transform: translateZ(30px);
+      }
+      .tilted-card-caption {
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 4px 10px;
+        font-size: 10px;
+        color: #2d2d2d;
+        opacity: 0;
+        z-index: 3;
+      }
+      
+      /* Styles for GlitchText component */
+      .glitch-text {
+        position: relative;
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: clamp(3rem, 10vw, 8rem);
+        letter-spacing: 0.05em;
+        line-height: 1.1;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        overflow: hidden;
+        animation-play-state: paused;
+        opacity: 0;
+      }
+      .glitch-shadows::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff00c1; /* Magenta */
+        animation: glitch-anim-1 var(--glitch-speed, 1s) infinite linear alternate-reverse;
+      }
+      .glitch-shadows::after {
+        left: -2px;
+        text-shadow: -2px 0 #00fff9; /* Cyan */
+        animation: glitch-anim-2 calc(var(--glitch-speed, 1s) * 1.5) infinite linear alternate-reverse;
+      }
+      .glitch-on-hover:hover::before,
+      .glitch-on-hover:hover::after {
+        animation-play-state: running;
+        opacity: 1;
+      }
+      .glitch-text:not(.glitch-on-hover)::before,
+      .glitch-text:not(.glitch-on-hover)::after {
+        animation-play-state: running;
+        opacity: 1;
+      }
+      
+      @keyframes glitch-anim-1 {
+        0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+        10% { clip-path: polygon(0 75%, 100% 75%, 100% 75%, 0 75%); }
+        20% { clip-path: polygon(0 40%, 100% 40%, 100% 42%, 0 42%); }
+        30% { clip-path: polygon(0 62%, 100% 62%, 100% 65%, 0 65%); }
+        40% { clip-path: polygon(0 15%, 100% 15%, 100% 18%, 0 18%); }
+        50% { clip-path: polygon(0 90%, 100% 90%, 100% 92%, 0 92%); }
+        60% { clip-path: polygon(0 55%, 100% 55%, 100% 59%, 0 59%); }
+        70% { clip-path: polygon(0 33%, 100% 33%, 100% 35%, 0 35%); }
+        80% { clip-path: polygon(0 82%, 100% 82%, 100% 85%, 0 85%); }
+        90% { clip-path: polygon(0 47%, 100% 47%, 100% 50%, 0 50%); }
+        100% { clip-path: polygon(0 22%, 100% 22%, 100% 25%, 0 25%); }
+      }
+      @keyframes glitch-anim-2 {
+        0% { clip-path: polygon(0 65%, 100% 65%, 100% 68%, 0 68%); }
+        15% { clip-path: polygon(0 12%, 100% 12%, 100% 12%, 0 12%); }
+        25% { clip-path: polygon(0 88%, 100% 88%, 100% 90%, 0 90%); }
+        35% { clip-path: polygon(0 43%, 100% 43%, 100% 46%, 0 46%); }
+        45% { clip-path: polygon(0 71%, 100% 71%, 100% 74%, 0 74%); }
+        55% { clip-path: polygon(0 6%, 100% 6%, 100% 9%, 0 9%); }
+        65% { clip-path: polygon(0 58%, 100% 58%, 100% 61%, 0 61%); }
+        75% { clip-path: polygon(0 23%, 100% 23%, 100% 26%, 0 26%); }
+        85% { clip-path: polygon(0 78%, 100% 78%, 100% 81%, 0 81%); }
+        95% { clip-path: polygon(0 37%, 100% 37%, 100% 40%, 0 40%); }
+        100% { clip-path: polygon(0 51%, 100% 51%, 100% 54%, 0 54%); }
+      }
+
+      /* Styles for new animated Footer */
+      .animated-footer-text {
+        font-family: sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 8vw, 6rem);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+      }
+      
+      /* New animated gradient for CTA */
+      .animated-gradient-bg {
+        background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a202c);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "@google/genai": "https://aistudiocdn.com/google-genai@^0.19.22"
+  }
+}
+</script>
+</head>
+  <body class="bg-black">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
