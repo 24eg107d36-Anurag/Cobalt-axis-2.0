@@ -57,13 +57,15 @@ const Navbar: React.FC = () => {
           </div>
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <button
+              <motion.button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 className="text-gray-300 hover:text-white transition-colors duration-300"
               >
                 {link.name}
-              </button>
+              </motion.button>
             ))}
             <motion.button
               onClick={() => scrollToSection('contact')}
@@ -97,6 +99,8 @@ const Navbar: React.FC = () => {
                 key={link.name}
                 variants={linkVariants}
                 onClick={() => scrollToSection(link.href)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="text-gray-300 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium"
               >
                 {link.name}
