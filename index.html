@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="4L_CJf-XKN6hXJt4PVtu8LLXYiUABtCDa2dFDOiBy7k" />
     <title>CobaltAxis - Modern Web Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -219,231 +220,21 @@
         align-items: center;
         justify-content: center;
       }
-      .tilted-card-mobile-alert {
-        position: absolute;
-        top: 1rem;
-        text-align: center;
-        font-size: 0.875rem;
-        display: none;
-      }
-      @media (max-width: 640px) {
-        .tilted-card-mobile-alert {
-          display: block;
-        }
-        .tilted-card-caption {
-          display: none;
-        }
-      }
-      .tilted-card-inner {
-        position: relative;
-        transform-style: preserve-3d;
-      }
-      .tilted-card-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        object-fit: cover;
-        border-radius: 9999px; /* Make image circular */
-        will-change: transform;
-        transform: translateZ(0);
-      }
-      .tilted-card-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        will-change: transform;
-        transform: translateZ(30px);
-      }
-      .tilted-card-caption {
-        pointer-events: none;
-        position: absolute;
-        left: 0;
-        top: 0;
-        border-radius: 4px;
-        background-color: #fff;
-        padding: 4px 10px;
-        font-size: 10px;
-        color: #2d2d2d;
-        opacity: 0;
-        z-index: 3;
-      }
-      
-      /* Styles for GlitchText component */
-      .glitch-text {
-        position: relative;
-        color: white;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: clamp(3rem, 10vw, 8rem);
-        letter-spacing: 0.05em;
-        line-height: 1.1;
-      }
-      .glitch-text::before,
-      .glitch-text::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: black;
-        overflow: hidden;
-        animation-play-state: paused;
-        opacity: 0;
-      }
-      .glitch-shadows::before {
-        left: 2px;
-        text-shadow: -2px 0 #ff00c1; /* Magenta */
-        animation: glitch-anim-1 var(--glitch-speed, 1s) infinite linear alternate-reverse;
-      }
-      .glitch-shadows::after {
-        left: -2px;
-        text-shadow: -2px 0 #00fff9; /* Cyan */
-        animation: glitch-anim-2 calc(var(--glitch-speed, 1s) * 1.5) infinite linear alternate-reverse;
-      }
-      .glitch-on-hover:hover::before,
-      .glitch-on-hover:hover::after {
-        animation-play-state: running;
-        opacity: 1;
-      }
-      .glitch-text:not(.glitch-on-hover)::before,
-      .glitch-text:not(.glitch-on-hover)::after {
-        animation-play-state: running;
-        opacity: 1;
-      }
-      
-      @keyframes glitch-anim-1 {
-        0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
-        10% { clip-path: polygon(0 75%, 100% 75%, 100% 75%, 0 75%); }
-        20% { clip-path: polygon(0 40%, 100% 40%, 100% 42%, 0 42%); }
-        30% { clip-path: polygon(0 62%, 100% 62%, 100% 65%, 0 65%); }
-        40% { clip-path: polygon(0 15%, 100% 15%, 100% 18%, 0 18%); }
-        50% { clip-path: polygon(0 90%, 100% 90%, 100% 92%, 0 92%); }
-        60% { clip-path: polygon(0 55%, 100% 55%, 100% 59%, 0 59%); }
-        70% { clip-path: polygon(0 33%, 100% 33%, 100% 35%, 0 35%); }
-        80% { clip-path: polygon(0 82%, 100% 82%, 100% 85%, 0 85%); }
-        90% { clip-path: polygon(0 47%, 100% 47%, 100% 50%, 0 50%); }
-        100% { clip-path: polygon(0 22%, 100% 22%, 100% 25%, 0 25%); }
-      }
-      @keyframes glitch-anim-2 {
-        0% { clip-path: polygon(0 65%, 100% 65%, 100% 68%, 0 68%); }
-        15% { clip-path: polygon(0 12%, 100% 12%, 100% 12%, 0 12%); }
-        25% { clip-path: polygon(0 88%, 100% 88%, 100% 90%, 0 90%); }
-        35% { clip-path: polygon(0 43%, 100% 43%, 100% 46%, 0 46%); }
-        45% { clip-path: polygon(0 71%, 100% 71%, 100% 74%, 0 74%); }
-        55% { clip-path: polygon(0 6%, 100% 6%, 100% 9%, 0 9%); }
-        65% { clip-path: polygon(0 58%, 100% 58%, 100% 61%, 0 61%); }
-        75% { clip-path: polygon(0 23%, 100% 23%, 100% 26%, 0 26%); }
-        85% { clip-path: polygon(0 78%, 100% 78%, 100% 81%, 0 81%); }
-        95% { clip-path: polygon(0 37%, 100% 37%, 100% 40%, 0 40%); }
-        100% { clip-path: polygon(0 51%, 100% 51%, 100% 54%, 0 54%); }
-      }
-
-      /* Styles for new animated Footer */
-      .animated-footer-text {
-        font-family: sans-serif;
-        font-weight: 800;
-        font-size: clamp(2rem, 8vw, 6rem);
-        letter-spacing: -0.02em;
-        line-height: 1;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-      }
-      
-      /* New animated gradient for CTA */
-      .animated-gradient-bg {
-        background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a202c);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-      }
-
-      @keyframes gradient {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      /* Styles for Brochure Modal */
-      .brochure-backdrop {
-        position: fixed;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(8px);
-        z-index: 100;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-      }
-      .brochure-modal {
-        position: relative;
-        width: 100%;
-        max-width: 1100px;
-        height: 90vh;
-        max-height: 700px;
-        background-color: #0d1117;
-        border-radius: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      }
-      .brochure-pill {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        color: #d1d5db;
-        background-color: rgba(255, 255, 255, 0.05);
-        transition: all 0.2s ease-in-out;
-      }
-      .brochure-pill:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-          border-color: rgba(255, 255, 255, 0.4);
-      }
-      .brochure-content {
-        flex-grow: 1;
-        position: relative;
-        padding: 2.5rem;
-        overflow-y: auto;
-      }
-      .brochure-blob {
-        position: absolute;
-        filter: blur(80px);
-        opacity: 0.15;
-        border-radius: 9999px;
-        pointer-events: none;
-        animation: float 20s infinite alternate ease-in-out;
-      }
-      @keyframes float {
-        0% { transform: translateY(-10%) translateX(-10%) rotate(0deg); }
-        100% { transform: translateY(10%) translateX(10%) rotate(360deg); }
-      }
-
     </style>
   <script type="importmap">
 {
   "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "@google/genai": "https://aistudiocdn.com/google-genai@^0.19.22"
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
   }
 }
 </script>
 </head>
   <body class="bg-black">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
