@@ -11,7 +11,6 @@ import Founders from './components/Founders';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BrochureModal from './components/BrochureModal';
-import Chatbot from './components/Chatbot';
 import { 
   TwitterIcon, 
   LinkedInIcon, 
@@ -107,7 +106,6 @@ const App: React.FC = () => {
         <Footer socialLinks={socialLinks} />
       </div>
       <BrochureModal isOpen={isBrochureOpen} onClose={handleCloseBrochure} />
-      <Chatbot />
     </div>
   );
 };

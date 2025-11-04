@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import TextType from './TextType';
@@ -30,7 +29,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-900/50 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
             </div>
 
-            <div className="text-5xl md:text-7xl font-bold text-white leading-tight h-24 md:h-36 flex items-center justify-center">
+            <div className="w-full text-center text-5xl md:text-7xl font-bold text-white leading-tight h-24 md:h-36 flex items-center justify-center">
                  <TextType
                     texts={heroPhrases}
                     typingSpeed={100}
