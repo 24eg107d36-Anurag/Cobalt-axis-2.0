@@ -1,14 +1,17 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import LogoLoop from './components/LogoLoop';
 import Services from './components/Services';
+import ScrollVelocity from './components/ScrollVelocity';
 import Projects from './components/Projects';
 import Founders from './components/Founders';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BrochureModal from './components/BrochureModal';
+import Chatbot from './components/Chatbot';
 import { 
   TwitterIcon, 
   LinkedInIcon, 
@@ -23,7 +26,6 @@ import {
   ViteIcon,
   SvelteIcon
 } from './components/icons';
-import ScrollVelocity from './components/ScrollVelocity';
 
 const techLogos = [
     { node: <ReactIcon />, title: 'React' },
@@ -93,15 +95,9 @@ const App: React.FC = () => {
                   />
               </div>
           </section>
-          <ScrollVelocity 
-            texts={['CobaltAxis', 'CobaltAxis']}
-            velocity={-25}
-            className="scroll-text-gradient"
-          />
           <Services />
           <ScrollVelocity 
-            texts={['Innovative Solutions', 'Creative Designs']}
-            velocity={-20}
+            texts={["COBALTAXIS COBALTAXIS COBALTAXIS", "COBALTAXIS COBALTAXIS COBALTAXIS"]} 
             className="scroll-text-gradient"
           />
           <Projects />
@@ -111,6 +107,7 @@ const App: React.FC = () => {
         <Footer socialLinks={socialLinks} />
       </div>
       <BrochureModal isOpen={isBrochureOpen} onClose={handleCloseBrochure} />
+      <Chatbot />
     </div>
   );
 };

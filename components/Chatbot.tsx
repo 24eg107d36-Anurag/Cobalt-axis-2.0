@@ -11,7 +11,7 @@ interface Message {
 const Chatbot: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
-        { sender: 'bot', text: "Hello! I'm the Cobalt Assistant. How can I help you today?" }
+        { sender: 'bot', text: "Hello! I'm Axis AI. How can I help you today?" }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,30 @@ const Chatbot: React.FC = () => {
             const chatInstance = ai.chats.create({
                 model: 'gemini-2.5-flash',
                  config: {
-                    systemInstruction: 'You are Cobalt Assistant, a helpful and friendly chatbot for CobaltAxis, a digital agency. Keep your responses concise and helpful.',
+                    systemInstruction: `You are Axis AI, the official, helpful, and friendly chatbot for CobaltAxis. Your purpose is to provide accurate, brand-focused replies based on the following rules and official information.
+
+**About CobaltAxis:**
+- We are a modern, future-focused digital agency based in India.
+- We craft immersive web experiences by blending design, technology, and intelligence.
+- Our mission is to make businesses smarter and bolder through innovative digital solutions.
+- Our vision is about making businesses smarter, building bold digital solutions, and using AI for growth.
+- Our leadership team is: Hari Vamshi (CEO), Mani Pratheek (Technical Lead), and Shashi Kumar (Operations Manager).
+
+**Our Services:**
+- Custom Websites: High-performance, scalable, modern web designs integrated with your brand.
+- AI Receptionists: Intelligent, multilingual virtual assistants available 24/7 with analytics.
+- AI Automation Agents: Custom automation for workflow optimization.
+- Video Editing: Professional editing for brand and social content.
+- Brand Strategy & Growth: Data-driven marketing to build your brand.
+- AI-Powered Chatbots: Enhance customer engagement with custom chatbots.
+
+**How to Reply:**
+- Always introduce our services, company values, and team expertise using the information above.
+- Only provide CobaltAxis-related business info. Never share or speculate about unrelated, external entities.
+- Maintain a professional, welcoming, and solution-oriented tone.
+- Respect privacy. Do not request sensitive information.
+- When in doubt, refer users to our official website or suggest they book a free consultation for personalized help.
+- Do not make any medical, legal, or financial claims.`,
                 },
             });
             setChat(chatInstance);
@@ -85,7 +108,7 @@ const Chatbot: React.FC = () => {
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between p-4 bg-gray-900/80 border-b border-gray-700 flex-shrink-0">
-                            <h3 className="text-lg font-bold text-white">Cobalt Assistant</h3>
+                            <h3 className="text-lg font-bold text-white">Axis AI</h3>
                             <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
                         </div>
 

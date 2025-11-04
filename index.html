@@ -1,10 +1,20 @@
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-site-verification" content="4L_CJf-XKN6hXJt4PVtu8LLXYiUABtCDa2dFDOiBy7k" />
     <title>CobaltAxis - Modern Web Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -220,21 +230,149 @@
         align-items: center;
         justify-content: center;
       }
+      .tilted-card-inner {
+        position: relative;
+        transform-style: preserve-3d;
+      }
+      .tilted-card-img {
+        display: block;
+        border-radius: 9999px; /* full round */
+        object-fit: cover;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      .tilted-card-caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        pointer-events: none;
+        font-size: 0.875rem;
+        white-space: nowrap;
+        transform: translate(-50%, -120%);
+      }
+      .tilted-card-mobile-alert {
+        display: none;
+      }
+      @media (hover: none) and (pointer: coarse) {
+        .tilted-card-mobile-alert {
+          display: block;
+          color: white;
+          text-align: center;
+        }
+        .tilted-card-inner, .tilted-card-caption {
+          display: none;
+        }
+      }
+      .tilted-card-overlay {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* Styles for BrochureModal component */
+      .brochure-backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        backdrop-filter: blur(8px);
+      }
+      .brochure-modal {
+        position: relative;
+        width: 90vw;
+        height: 80vh;
+        max-width: 1024px;
+        max-height: 700px;
+        background: #0d1117;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+      .brochure-blob {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(100px);
+        opacity: 0.2;
+        pointer-events: none;
+        animation: brochure-blob-spin 20s linear infinite;
+      }
+      @keyframes brochure-blob-spin {
+        from { transform: rotate(0deg) scale(1); }
+        to { transform: rotate(360deg) scale(1.2); }
+      }
+      .brochure-pill {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        color: #d1d5db; /* gray-300 */
+        backdrop-filter: blur(4px);
+      }
+
+      /* Styles for Chatbot component */
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+        }
+      }
+      .chatbot-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .chatbot-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .chatbot-scrollbar::-webkit-scrollbar-thumb {
+        background: #4a5568; /* gray-600 */
+        border-radius: 3px;
+      }
+      .chatbot-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #718096; /* gray-500 */
+      }
+
+      /* Styles for Footer component */
+      .animated-footer-text {
+        font-size: 3rem;
+        font-weight: 700;
+        display: flex;
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Styles for Contact component gradient BG */
+      .animated-gradient-bg {
+        background: linear-gradient(-45deg, #0f172a, #1e293b, #111827, #3b82f6, #8b5cf6);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
-  }
-}
-</script>
-</head>
-  <body class="bg-black">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  </head>
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
