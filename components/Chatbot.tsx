@@ -15,13 +15,19 @@ const Chatbot: React.FC = () => {
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [chat, setChat] = useState<Chat | null>(null);
+    const chatRef = useRef<Chat | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const initChat = () => {
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(scrollToBottom, [messages]);
+
+    const initializeChat = () => {
+        try {
             const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
-            const chatInstance = ai.chats.create({
+            chatRef.current = ai.chats.create({
                 model: 'gemini-2.5-flash',
                  config: {
                     systemInstruction: `You are Axis AI, the official, helpful, and friendly chatbot for CobaltAxis. Your purpose is to provide accurate, brand-focused replies based on the following rules and official information.
@@ -50,28 +56,32 @@ const Chatbot: React.FC = () => {
 - Do not make any medical, legal, or financial claims.`,
                 },
             });
-            setChat(chatInstance);
-        };
-        initChat();
-    }, []);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            return true;
+        } catch (error) {
+            console.error("Failed to initialize chat:", error);
+            setMessages(prev => [...prev, { sender: 'bot', text: "Sorry, I'm having trouble connecting to the AI. Please check your API key setup." }]);
+            return false;
+        }
     };
-
-    useEffect(scrollToBottom, [messages]);
 
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!input.trim() || isLoading || !chat) return;
+        if (!input.trim() || isLoading) return;
 
         const userMessage: Message = { sender: 'user', text: input };
         setMessages(prev => [...prev, userMessage]);
         setInput('');
         setIsLoading(true);
+        
+        if (!chatRef.current) {
+            if (!initializeChat()) {
+                setIsLoading(false);
+                return;
+            }
+        }
 
         try {
-            const response = await chat.sendMessage({ message: input });
+            const response = await chatRef.current!.sendMessage({ message: input });
             const botMessage: Message = { sender: 'bot', text: response.text };
             setMessages(prev => [...prev, botMessage]);
         } catch (error) {
