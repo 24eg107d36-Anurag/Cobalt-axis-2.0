@@ -7,7 +7,7 @@ const teamData = [
   {
     name: 'Hari Vamshi',
     title: 'CEO & Team Lead',
-    imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop',
+    imageUrl: 'https://i.ibb.co/2YdWTZyC/hari-profile.jpg',
     bio: 'As the CEO, Hari sets the strategic direction for CobaltAxis. He makes the high-level decisions that drive our innovation and client success.',
     socials: {
       twitter: 'https://x.com/harivamshi1118?s=11',
@@ -17,7 +17,7 @@ const teamData = [
   {
     name: 'Mani Pratheek',
     title: 'Technical Lead',
-    imageUrl: 'https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?q=80&w=300&auto=format&fit=crop',
+    imageUrl: 'https://i.ibb.co/ds1G71Ry/pratheek-profile.jpg',
     bio: 'Mani leads our technical execution. With a passion for clean code and brilliant design, he is the hands-on expert delivering our digital services.',
     socials: {
       twitter: 'https://x.com/pratheek987?s=09',
@@ -27,11 +27,11 @@ const teamData = [
   {
     name: 'Shashi Kumar',
     title: 'Operations Manager',
-    imageUrl: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=300&auto=format&fit=crop',
+    imageUrl: 'https://i.ibb.co/ZzSYbrcY/shashi-profile.jpg',
     bio: 'Shashi is the engine of our operations. He executes strategy, manages complex processes, and ensures every project is delivered smoothly and on time.',
     socials: {
       twitter: '#',
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/shashi-kumar-92a5432b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
     },
   },
 ];

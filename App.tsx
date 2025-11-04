@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -56,9 +55,8 @@ const App: React.FC = () => {
   }, []);
   
   const socialLinks = [
-    { name: 'Twitter', icon: <TwitterIcon />, url: '#' },
-    { name: 'LinkedIn', icon: <LinkedInIcon />, url: '#' },
-    { name: 'GitHub', icon: <GithubIcon />, url: '#' },
+    { name: 'Twitter', icon: <TwitterIcon />, url: 'https://x.com/CobaltAxis' },
+    { name: 'LinkedIn', icon: <LinkedInIcon />, url: 'https://www.linkedin.com/in/cobalt-axis-6b997a383?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
   ];
 
   const handleGetStarted = () => setIsBrochureOpen(true);
