@@ -57,13 +57,15 @@ const Contact: React.FC = () => {
                             </motion.h2>
 
                             <motion.div variants={itemVariants} className="mt-8">
-                                <motion.button
-                                    whileHover={{ scale: 1.05, boxShadow: "0px 0px 30px rgba(59, 130, 246, 0.5)" }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all duration-300"
-                                >
-                                    Book a Free Consultation
-                                </motion.button>
+                                <a href="https://calendly.com/cobaltaxis-7/30min?month=2025-11" target="_blank" rel="noopener noreferrer">
+                                    <motion.button
+                                        whileHover={{ scale: 1.05, boxShadow: "0px 0px 30px rgba(59, 130, 246, 0.5)" }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all duration-300"
+                                    >
+                                        Book a Free Consultation
+                                    </motion.button>
+                                </a>
                             </motion.div>
                         </div>
                     </div>

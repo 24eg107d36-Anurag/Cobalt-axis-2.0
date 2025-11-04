@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { GithubIcon, ExternalLinkIcon } from './icons';
+import { ExternalLinkIcon } from './icons';
 
 const projectsData = [
   {
@@ -59,17 +59,6 @@ const Projects: React.FC = () => {
         visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', damping: 15, stiffness: 100 } },
     };
 
-    const linkContainerVariants: Variants = {
-        rest: { opacity: 0, y: 10 },
-        hover: { opacity: 1, y: 0, transition: { staggerChildren: 0.15 } }
-    };
-
-    const linkItemVariants: Variants = {
-        rest: { opacity: 0, y: 10 },
-        hover: { opacity: 1, y: 0 }
-    };
-
-
   return (
     <section id="projects" className="py-24 sm:py-32 px-4 overflow-hidden">
         <motion.div
@@ -96,13 +85,13 @@ const Projects: React.FC = () => {
                 className="max-w-7xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
             >
                 {projectsData.map((project, index) => (
-                <motion.div 
+                <motion.a 
                     key={index}
+                    href={project.liveDemoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     variants={gridItem}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                    className="group relative overflow-hidden rounded-2xl"
+                    className="group relative overflow-hidden rounded-2xl block"
                 >
                     <img 
                         src={project.imageUrl} 
@@ -110,26 +99,17 @@ const Projects: React.FC = () => {
                         className="w-full h-full object-cover aspect-[4/3] transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 p-6 w-full">
+                    <div className="absolute bottom-0 left-0 p-6 w-full transform transition-transform duration-300 ease-out group-hover:-translate-y-4">
                         <div>
                             <p className="text-sm text-blue-400 font-semibold">{project.category}</p>
                             <h3 className="text-xl font-bold text-white mt-1">{project.title}</h3>
                         </div>
-                        <motion.div 
-                            variants={linkContainerVariants}
-                            className="mt-4 flex items-center space-x-4"
-                        >
-                            <motion.a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" variants={linkItemVariants} className="flex items-center text-sm space-x-2 text-gray-300 hover:text-white transition-colors">
-                                <ExternalLinkIcon className="w-5 h-5" />
-                                <span>Live Demo</span>
-                            </motion.a>
-                            <motion.a href={project.githubUrl} target="_blank" rel="noopener noreferrer" variants={linkItemVariants} className="flex items-center text-sm space-x-2 text-gray-300 hover:text-white transition-colors">
-                                <GithubIcon className="w-5 h-5" />
-                                <span>GitHub</span>
-                            </motion.a>
-                        </motion.div>
+                        <div className="mt-4 flex items-center space-x-2 text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                           <ExternalLinkIcon className="w-5 h-5" />
+                           <span>View Live Demo</span>
+                        </div>
                     </div>
-                </motion.div>
+                </motion.a>
                 ))}
             </motion.div>
         </motion.div>

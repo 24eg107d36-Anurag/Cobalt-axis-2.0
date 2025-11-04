@@ -1,14 +1,26 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import TextType from './TextType';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+    onGetStartedClick: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
     const heroPhrases = [
         "Build Bold.",
         "Design Smart.",
         "Innovate Fast.",
         "Scale Intelligently."
     ];
+
+    const scrollToSection = (id: string) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <section id="home" className="relative h-screen w-full flex flex-col justify-center items-center text-center overflow-hidden px-4">
@@ -44,6 +56,7 @@ const Hero: React.FC = () => {
                 className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
                 <motion.button
+                    onClick={onGetStartedClick}
                     whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(59, 130, 246, 0.5)" }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300"
@@ -51,6 +64,7 @@ const Hero: React.FC = () => {
                     Get Started
                 </motion.button>
                 <motion.button
+                    onClick={() => scrollToSection('projects')}
                     whileHover={{ scale: 1.05, color: '#fff' }}
                     whileTap={{ scale: 0.95 }}
                     className="relative text-gray-300 px-8 py-3 rounded-lg font-semibold transition-all duration-300 gradient-shadow"

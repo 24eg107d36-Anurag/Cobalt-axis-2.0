@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { GlobeIcon, RobotIcon, BoltIcon, VideoIcon, ChartIcon, UsersIcon } from './icons';
+import { GlobeIcon, RobotIcon, BoltIcon, VideoIcon, ChartIcon, ChatbotIcon } from './icons';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -31,13 +31,13 @@ const servicesData = [
   },
    {
     icon: <ChartIcon />,
-    title: "Marketing",
-    description: "Digital marketing strategies to boost visibility and drive growth.",
+    title: "Brand Strategy & Growth",
+    description: "Data-driven marketing and social strategies to build your brand and boost visibility.",
   },
    {
-    icon: <UsersIcon />,
-    title: "Social Media Handling",
-    description: "Full-service social management, content creation, and engagement optimization.",
+    icon: <ChatbotIcon width="40" height="40" />,
+    title: "AI-Powered Chatbots",
+    description: "Custom chatbot solutions to enhance customer engagement and streamline support.",
   },
 ];
 
@@ -51,11 +51,6 @@ const cardVariants: Variants = {
         boxShadow: "0px 0px 40px rgba(59, 130, 246, 0.3)", // Neon blue glow
         transition: { duration: 0.3, ease: 'easeIn' }
     }
-};
-
-const learnMoreVariants: Variants = {
-    rest: { opacity: 0, y: 10, transition: { duration: 0.2, ease: 'easeOut' } },
-    hover: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeIn' } }
 };
 
 const blobVariants: Variants = {
@@ -93,11 +88,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description }) =
           </div>
           <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
           <p className="text-gray-400 flex-grow">{description}</p>
-           <motion.div variants={learnMoreVariants} className="mt-6">
-                <a href="#" className="font-semibold text-blue-400 hover:text-blue-300 transition-colors group">
-                    Learn More <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">&rarr;</span>
-                </a>
-            </motion.div>
         </div>
       </motion.div>
     </motion.div>
@@ -119,7 +109,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-32 px-4 min-h-screen flex flex-col justify-center">
+    <section id="services" className="pt-12 pb-32 px-4 min-h-screen flex flex-col justify-center">
       <motion.div 
         variants={containerVariants}
         initial="hidden"

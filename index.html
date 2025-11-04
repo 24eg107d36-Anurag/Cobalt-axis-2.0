@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="UTF-g" />
+    <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CobaltAxis - Modern Web Solutions</title>
@@ -369,6 +369,65 @@
         100% {
           background-position: 0% 50%;
         }
+      }
+
+      /* Styles for Brochure Modal */
+      .brochure-backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .brochure-modal {
+        position: relative;
+        width: 100%;
+        max-width: 1100px;
+        height: 90vh;
+        max-height: 700px;
+        background-color: #0d1117;
+        border-radius: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+      .brochure-pill {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        color: #d1d5db;
+        background-color: rgba(255, 255, 255, 0.05);
+        transition: all 0.2s ease-in-out;
+      }
+      .brochure-pill:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.4);
+      }
+      .brochure-content {
+        flex-grow: 1;
+        position: relative;
+        padding: 2.5rem;
+        overflow-y: auto;
+      }
+      .brochure-blob {
+        position: absolute;
+        filter: blur(80px);
+        opacity: 0.15;
+        border-radius: 9999px;
+        pointer-events: none;
+        animation: float 20s infinite alternate ease-in-out;
+      }
+      @keyframes float {
+        0% { transform: translateY(-10%) translateX(-10%) rotate(0deg); }
+        100% { transform: translateY(10%) translateX(10%) rotate(360deg); }
       }
 
     </style>

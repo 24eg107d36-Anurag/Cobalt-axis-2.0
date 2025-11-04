@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Founders from './components/Founders';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BrochureModal from './components/BrochureModal';
 import { 
   TwitterIcon, 
   LinkedInIcon, 
@@ -40,6 +41,7 @@ const techLogos = [
 
 const App: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isBrochureOpen, setIsBrochureOpen] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -59,6 +61,9 @@ const App: React.FC = () => {
     { name: 'GitHub', icon: <GithubIcon />, url: '#' },
   ];
 
+  const handleGetStarted = () => setIsBrochureOpen(true);
+  const handleCloseBrochure = () => setIsBrochureOpen(false);
+
   return (
     <div className="bg-black text-gray-300 font-sans selection:bg-blue-500/30 relative">
       {/* Cursor Glow Effect */}
@@ -72,9 +77,9 @@ const App: React.FC = () => {
       <div className="relative z-10">
         <Navbar />
         <main>
-          <Hero />
+          <Hero onGetStartedClick={handleGetStarted} />
           <About />
-          <section className="py-24 bg-black">
+          <section className="pt-24 pb-12 bg-black">
               <div className="max-w-7xl mx-auto">
                   <LogoLoop
                       logos={techLogos}
@@ -90,6 +95,11 @@ const App: React.FC = () => {
                   />
               </div>
           </section>
+          <ScrollVelocity 
+            texts={['CobaltAxis', 'CobaltAxis']}
+            velocity={-25}
+            className="scroll-text-gradient"
+          />
           <Services />
           <ScrollVelocity 
             texts={['Innovative Solutions', 'Creative Designs']}
@@ -102,6 +112,7 @@ const App: React.FC = () => {
         </main>
         <Footer socialLinks={socialLinks} />
       </div>
+      <BrochureModal isOpen={isBrochureOpen} onClose={handleCloseBrochure} />
     </div>
   );
 };

@@ -51,9 +51,9 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center cursor-pointer" onClick={() => scrollToSection('home')}>
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('home')}>
             <LogoIcon />
-            <span className="text-white font-bold text-xl ml-2">CobaltAxis</span>
+            <span className="text-white font-bold text-xl tracking-tight">CobaltAxis</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
