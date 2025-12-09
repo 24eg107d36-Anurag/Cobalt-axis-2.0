@@ -1,5 +1,5 @@
+
 import React, { useState } from 'react';
-// FIX: Import Variants type from framer-motion to resolve type errors.
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { 
     LogoIcon, 
@@ -31,19 +31,16 @@ const whyChooseUsFeatures = [
 ];
 
 
-// FIX: Explicitly type animation variants with the Variants type to ensure compatibility with framer-motion.
 const backdropVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
 
-// FIX: Explicitly type animation variants with the Variants type to ensure compatibility with framer-motion, resolving an issue with the `ease` property.
 const modalVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeOut' } },
 };
 
-// FIX: Explicitly type animation variants with the Variants type to ensure compatibility with framer-motion.
 const pageVariants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? '100%' : '-100%',
@@ -108,16 +105,15 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose }) => {
                         animate="center"
                         exit="exit"
                         transition={{ type: 'tween', ease: 'easeInOut', duration: 0.4 }}
-                        className="absolute inset-0 p-6 sm:p-10"
+                        className="absolute inset-0 p-6 sm:p-10 overflow-y-auto overflow-x-hidden pb-24"
                     >
                         {page === 0 && <PageOne />}
                         {page === 1 && <PageTwo onJoinClick={handleJoinClick} />}
-                    {/* FIX: Corrected typo in closing tag from </motion.motion.div> to </motion.div>. */}
                     </motion.div>
                 </AnimatePresence>
             </div>
             
-             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
+             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/5">
                 <button onClick={() => paginate(-1)} className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white">
                     <ArrowLeftIcon className="w-5 h-5"/>
                 </button>
@@ -138,7 +134,7 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose }) => {
 };
 
 const PageOne: React.FC = () => (
-    <div className="flex flex-col items-center justify-center text-center gap-12 h-full p-4">
+    <div className="flex flex-col items-center justify-center text-center gap-8 min-h-full">
         <div>
             <div className="flex items-center gap-2 justify-center">
                 <LogoIcon/>
@@ -147,7 +143,7 @@ const PageOne: React.FC = () => (
             <a href="mailto:cobaltaxis.7@gmail.com" className="text-gray-400 mt-4 block hover:text-white">cobaltaxis.7@gmail.com</a>
         </div>
         
-        <div className="mt-8">
+        <div className="mt-4">
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">EXPERIENCE THE FUTURE OF BUSINESS — <br/><span className="gradient-text">POWERED BY AI</span></h2>
             <div className="flex flex-wrap gap-3 mt-8 justify-center">
                 {servicesPills.map(pill => <div key={pill} className="brochure-pill">{pill}</div>)}
@@ -178,7 +174,7 @@ const featureItemVariants: Variants = {
 
 const AIVisual = () => {
     return (
-        <div className="w-48 h-48 relative flex items-center justify-center">
+        <div className="w-48 h-48 relative flex items-center justify-center my-6 lg:my-0">
             <motion.div
                 className="absolute w-full h-full border-2 border-blue-500/50 rounded-full"
                 animate={{ rotate: 360 }}
@@ -200,18 +196,18 @@ const AIVisual = () => {
 
 const PageTwo: React.FC<{ onJoinClick: () => void }> = ({ onJoinClick }) => (
     <motion.div 
-        className="grid grid-cols-1 lg:grid-cols-5 gap-8 h-full items-center"
+        className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:h-full items-start lg:items-center min-h-full"
         variants={pageTwoContainerVariants}
     >
         {/* Left Column */}
         <motion.div 
-            className="lg:col-span-3 bg-gray-900/50 p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-center border border-white/10"
+            className="lg:col-span-3 bg-gray-900/50 p-6 sm:p-8 rounded-2xl flex flex-col justify-center border border-white/10 lg:h-full w-full"
             custom={true} // isLeft
             variants={columnVariants}
         >
             <div>
                 <h3 className="text-xl font-bold text-white uppercase tracking-wider">Our Philosophy</h3>
-                <p className="mt-4 text-gray-300 text-sm sm:text-base">
+                <p className="mt-4 text-gray-300 text-sm sm:text-base leading-relaxed">
                     We build digital ecosystems that blend design, technology, and AI automation to make businesses smarter and bolder.
                 </p>
             </div>
@@ -237,12 +233,12 @@ const PageTwo: React.FC<{ onJoinClick: () => void }> = ({ onJoinClick }) => (
 
         {/* Right Column */}
         <motion.div 
-            className="lg:col-span-2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left h-full"
+            className="lg:col-span-2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:h-full pb-8 lg:pb-0"
             custom={false} // !isLeft
             variants={columnVariants}
         >
             <AIVisual />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mt-6">SEE AI IN THE REAL WORLD</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mt-4">SEE AI IN THE REAL WORLD</h2>
             <p className="mt-4 text-gray-300">Discover the opportunities AI can bring to your business.</p>
             <motion.button 
                 onClick={onJoinClick}

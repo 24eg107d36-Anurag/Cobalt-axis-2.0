@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ExternalLinkIcon } from './icons';
@@ -25,10 +26,10 @@ const projectsData = [
     githubUrl: '#',
   },
   {
-    title: 'LevelUp NationX',
-    category: 'Business Landing Page',
-    imageUrl: 'https://i.ibb.co/kVynDNpd/levelup.jpg',
-    liveDemoUrl: 'https://levelupnation.netlify.app/',
+    title: 'CLNS',
+    category: 'Legal Network Solutions',
+    imageUrl: 'https://i.ibb.co/b519G5yx/clns-2.jpg',
+    liveDemoUrl: 'https://clns.in/',
     githubUrl: '#',
   },
 ];

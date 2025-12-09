@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { TwitterIcon, LinkedInIcon } from './icons';
@@ -25,13 +26,13 @@ const teamData = [
     },
   },
   {
-    name: 'Shashi Kumar',
-    title: 'Operations Manager',
-    imageUrl: 'https://i.ibb.co/ZzSYbrcY/shashi-profile.jpg',
-    bio: 'Shashi is the engine of our operations. He executes strategy, manages complex processes, and ensures every project is delivered smoothly and on time.',
+    name: 'Varun',
+    title: 'Developer',
+    imageUrl: 'https://i.ibb.co/ynbYxSsP/varun.png',
+    bio: 'Varun is a skilled developer passionate about building seamless digital experiences. He focuses on functionality, performance, and clean architecture.',
     socials: {
-      twitter: '#',
-      linkedin: 'https://www.linkedin.com/in/shashi-kumar-92a5432b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      twitter: 'https://x.com/varunthumma863',
+      linkedin: 'https://www.linkedin.com/in/varun-thumma-6994a133a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
     },
   },
 ];
@@ -86,7 +87,7 @@ const Founders: React.FC = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8"
+                    className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto"
                 >
                     {teamData.map((member, index) => (
                         <motion.div 
